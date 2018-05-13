@@ -23,4 +23,4 @@ class Vin(models.Model):
     """photo = models.ImageField(upload_to='chat/static/pp/', default='chat/static/pp/pp.jpeg')"""
     
     def __str__(self):
-        return "Nom : %s, Couleur : %s".format(self.Nom, self.Couleur)
+        return "Nom : %s, Couleur : %s"%(self.Nom, self.Couleur)
