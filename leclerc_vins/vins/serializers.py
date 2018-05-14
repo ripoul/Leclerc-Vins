@@ -13,9 +13,8 @@ class CouleurVinSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class VinSerializer(serializers.ModelSerializer):
-    Repas = RepasSerializer(many=True, read_only=True)
     Couleur = CouleurVinSerializer(read_only=True)
 
     class Meta:
         model = Vin
-        fields = ('Nom', 'Repas', 'Couleur')
+        fields = ('id', 'Nom', 'Couleur')

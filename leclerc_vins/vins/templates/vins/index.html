@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+
+    <script> 
+        $(document).ready(function() {
+            var table = $('#example').DataTable( {
+                dom: "Bfrtip",
+                ajax: {
+                    url: "getVins",
+                    type: 'GET'
+                },
+                columns: [
+                    { data: "id" },
+                    { data: "Nom" },
+                    { data: "Couleur.couleur" }
+                ],
+                select: true
+            });
+
+            $('#example tbody').on( 'click', 'tr', function () {
+                var json = table.row( this ).data();
+
+                console.log(json.id)
+
+                $.get( "getRepas/"+json.id, function( data ) {
+                    //$( ".result" ).html( data );
+                    alert( data );
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <table id="example" class="display" cellspacing="0">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Couleur</th>
+            </tr>
+        </thead>
+    </table>
+</body>
+</html>
