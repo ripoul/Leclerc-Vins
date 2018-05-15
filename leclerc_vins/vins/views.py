@@ -15,14 +15,24 @@ import json
 def index(request):
     return render(request, 'vins/index.html', {})
 
-def getVins(request):
-    instance = Vin.objects.all()
+def repas(request):
+    return render(request, 'vins/repas.html', {})
+
+def getVins(request, repas):
+    if repas=='-1':
+        instance = Vin.objects.all()
+    else:
+        instance = Vin.objects.filter(Repas=int(repas))
+    
     serializer = VinSerializer(instance, many=True)
     myjson = JSONRenderer().render(serializer.data)
     return HttpResponse(json.dumps({'data':json.loads(myjson)}))
 
-def getRepas(request, vin):
-    instance = Repas.objects.filter(vin__id=vin)
+def getRepas(request, vin=-1):
+    if vin=='-1':
+        instance = Repas.objects.all()
+    else:
+        instance = Repas.objects.filter(vin__id=int(vin))
     serializer = RepasSerializer(instance, many=True)
     myjson = JSONRenderer().render(serializer.data)
     

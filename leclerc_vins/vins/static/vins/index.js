@@ -2,7 +2,7 @@ $(document).ready(function() {
     var vinTable = $('#vinTable').DataTable( {
         dom: "Bfrtip",
         ajax: {
-            url: "getVins",
+            url: "getVins/-1",
             type: 'GET'
         },
         columns: [
@@ -27,6 +27,8 @@ $(document).ready(function() {
 
         if ( $(this).hasClass('selected') ) {
             $(this).removeClass('selected');
+            repasTable.clear().draw();
+
         }
         else {
             vinTable.$('tr.selected').removeClass('selected');
