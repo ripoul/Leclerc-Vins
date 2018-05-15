@@ -6,7 +6,6 @@ $(document).ready(function() {
             type: 'GET'
         },
         columns: [
-            { data: "id" },
             { data: "Nom" }
         ],
         select: true
@@ -15,7 +14,6 @@ $(document).ready(function() {
     var vinTable = $('#vinTable').DataTable( {
         dom: "Bfrtip",
         columns: [
-            { data: "id" },
             { data: "Nom" },
             {data: "Couleur.couleur"}
         ],

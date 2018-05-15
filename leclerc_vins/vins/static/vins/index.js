@@ -6,7 +6,6 @@ $(document).ready(function() {
             type: 'GET'
         },
         columns: [
-            { data: "id" },
             { data: "Nom" },
             { data: "Couleur.couleur" }
         ],
@@ -16,7 +15,6 @@ $(document).ready(function() {
     var repasTable = $('#repasTable').DataTable( {
         dom: "Bfrtip",
         columns: [
-            { data: "id" },
             { data: "Nom" }
         ],
         select: true
