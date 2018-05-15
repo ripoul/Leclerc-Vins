@@ -9,7 +9,10 @@ $(document).ready(function() {
             { data: "Nom" },
             { data: "Couleur.couleur" }
         ],
-        select: true
+        select: true,
+        "language": {
+            "url": "http://cdn.datatables.net/plug-ins/1.10.16/i18n/French.json"
+        }
     });
 
     var repasTable = $('#repasTable').DataTable( {
@@ -17,7 +20,10 @@ $(document).ready(function() {
         columns: [
             { data: "Nom" }
         ],
-        select: true
+        select: true,
+        "language": {
+            "url": "http://cdn.datatables.net/plug-ins/1.10.16/i18n/French.json"
+        }
     });
 
     $('#vinTable tbody').on( 'click', 'tr', function () {
