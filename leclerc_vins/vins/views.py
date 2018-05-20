@@ -26,7 +26,7 @@ def getVins(request, repas):
     
     serializer = VinSerializer(instance, many=True)
     myjson = JSONRenderer().render(serializer.data)
-    return HttpResponse(json.dumps({'data':json.loads(myjson)}))
+    return HttpResponse(json.dumps({'data':json.loads(myjson.decode('utf-8'))}))
 
 def getRepas(request, vin=-1):
     if vin=='-1':
@@ -36,4 +36,4 @@ def getRepas(request, vin=-1):
     serializer = RepasSerializer(instance, many=True)
     myjson = JSONRenderer().render(serializer.data)
     
-    return HttpResponse(json.dumps({'data':json.loads(myjson)}))
+    return HttpResponse(json.dumps({'data':json.loads(myjson.decode('utf-8'))}))
