@@ -12,6 +12,7 @@ class Repas(models.Model):
 
 class CouleurVin(models.Model):
     couleur = models.CharField(max_length=200)
+    photo = models.ImageField(upload_to='vins/static/vins/')
 
     def __str__(self):
         return self.couleur

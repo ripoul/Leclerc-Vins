@@ -7,13 +7,17 @@ from django.shortcuts import render
 from .models import Vin, CouleurVin, Repas
 from django.http import HttpResponse
 from django.core import serializers
-from .serializers import VinSerializer, RepasSerializer
+from .serializers import VinSerializer, RepasSerializer, CouleurVinSerializer
 from rest_framework.renderers import JSONRenderer
 
 import json
 
 def index(request):
-    return render(request, 'vins/index.html', {})
+    instance = CouleurVin.objects.all()
+    serializer = CouleurVinSerializer(instance, many=True)
+    myjson = JSONRenderer().render(serializer.data)
+    data = {'data':json.loads(myjson.decode('utf-8'))}
+    return render(request, 'vins/index.html', data)
 
 def repas(request):
     return render(request, 'vins/repas.html', {})
