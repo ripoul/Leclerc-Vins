@@ -32,15 +32,24 @@
                     <h4>Couleur du vin</h4>
                 </div>
                 <div class="row">
-                    {% for d in data %}
+                    {% for couleur in couleurs %}
                         <div class="col-md-3 couleur" align="center" >
-                            <img src="{{d.photo}}" alt="{{d.couleur}}">
+                            <img src="{{couleur.photo}}" alt="{{couleur.couleur}}">
                             <div class="text-center">
-                                {{d.couleur}}
+                                {{couleur.couleur}}
                             </div>
                         </div>
                     {% endfor %}
                 </div>
+                <div class="row">
+                        <h4>Region du vin</h4>
+                        <select class="form-control region">
+                            <option value="all">all</option>
+                            {% for region in regions %}
+                                <option value="{{region.Nom}}">{{region.Nom}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
             </div>
             <div class="col-md-9">
                 <h1>Selectionnez un vin dans ce tableau : </h1>
@@ -49,6 +58,7 @@
                         <tr>
                             <th>Nom</th>
                             <th>Couleur</th>
+                            <th>Region</th>
                         </tr>
                     </thead>
                 </table>

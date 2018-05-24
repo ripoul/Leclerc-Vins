@@ -7,7 +7,8 @@ $(document).ready(function() {
         },
         columns: [
             { data: "Nom" },
-            { data: "Couleur.couleur" }
+            { data: "Couleur.couleur" },
+            { data: "Region.Nom" }
         ],
         select: true,
         "language": {
@@ -49,6 +50,14 @@ $(document).ready(function() {
             $(this).addClass('imgSelected');
             var couleur = $(this).find('img').attr('alt');
             var filteredData = vinTable.columns(1).search(couleur).draw();
+        }
+    });
+
+    $( ".region" ).change(function() {
+        if(this.value=='all'){
+            var filteredData = vinTable.columns(2).search('').draw();
+        }else{
+            var filteredData = vinTable.columns(2).search(this.value).draw();
         }
     });
 });

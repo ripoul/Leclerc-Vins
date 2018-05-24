@@ -4,10 +4,10 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 
 # Create your views here.
-from .models import Vin, CouleurVin, Repas
+from .models import Vin, CouleurVin, Repas, Region
 from django.http import HttpResponse
 from django.core import serializers
-from .serializers import VinSerializer, RepasSerializer, CouleurVinSerializer
+from .serializers import VinSerializer, RepasSerializer, CouleurVinSerializer, RegionSerializer
 from rest_framework.renderers import JSONRenderer
 
 import json
@@ -15,8 +15,16 @@ import json
 def index(request):
     instance = CouleurVin.objects.all()
     serializer = CouleurVinSerializer(instance, many=True)
-    myjson = JSONRenderer().render(serializer.data)
-    data = {'data':json.loads(myjson.decode('utf-8'))}
+    couleurJSON = JSONRenderer().render(serializer.data)
+
+    instance = Region.objects.all()
+    serializer = RegionSerializer(instance, many=True)
+    regionJSON = JSONRenderer().render(serializer.data)
+
+    data = {
+        'couleurs':json.loads(couleurJSON.decode('utf-8')),
+        'regions':json.loads(regionJSON.decode('utf-8'))
+    }
     return render(request, 'vins/index.html', data)
 
 def repas(request):
