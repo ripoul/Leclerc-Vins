@@ -18,7 +18,8 @@ $(document).ready(function() {
         dom: "Bfrtip",
         columns: [
             { data: "Nom" },
-            {data: "Couleur.couleur"}
+            {data: "Couleur.couleur"},
+            { data: "Region.Nom" }
         ],
         select: true,
         "language": {

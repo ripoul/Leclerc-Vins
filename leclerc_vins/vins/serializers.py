@@ -23,4 +23,4 @@ class VinSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Vin
-        fields = ('id', 'Nom', 'Couleur', 'Region')
+        fields = ('id', 'Nom', 'Couleur', 'Region', 'Fruit', 'Personalite')

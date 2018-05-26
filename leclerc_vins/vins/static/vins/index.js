@@ -1,4 +1,36 @@
 $(document).ready(function() {
+    function encodeQueryData(data) {
+        /*
+        var data = { 'first name': 'George', 'last name': 'Jetson', 'age': 110 };
+        var querystring = encodeQueryData(data);
+        console.log(querystring);
+        */
+        let ret = [];
+        for (let d in data){
+          ret.push(encodeURIComponent(d) + '=' + encodeURIComponent(data[d]));
+        }
+        return ret.join('&');
+    }
+
+    function getFruitPerso() {
+        var slPerso = $('#perso');
+        var slFruit = $('#fruit');
+        var cbFruit = $('#cb_fruit');
+        var cbPerso = $('#cb_perso');
+        var data = {};
+        var urlVins='getVins/-1?';
+
+        if (cbFruit.prop('checked')) {
+            data.fruit= slFruit.prop('value')
+        }
+        if (cbPerso.prop('checked')) {
+            data.perso= slPerso.prop('value')
+        }
+        
+        urlVins+=encodeQueryData(data);
+        return urlVins;
+    }
+
     var vinTable = $('#vinTable').DataTable( {
         dom: "Bfrtip",
         ajax: {
@@ -45,11 +77,33 @@ $(document).ready(function() {
         if($(this).attr('class').includes('imgSelected')){
             $(this).removeClass('imgSelected');
             var filteredData = vinTable.columns(1).search('').draw();
+            
+            $( ".perso #labMin" ).text("Sec/Léger");
+            $( ".perso #labMax" ).text("Moelleux/Doux/Puissant");
         }else{
             $( ".couleur" ).removeClass( "imgSelected" )
             $(this).addClass('imgSelected');
             var couleur = $(this).find('img').attr('alt');
             var filteredData = vinTable.columns(1).search(couleur).draw();
+
+            switch (couleur) {
+                case 'Blanc':
+                    $( ".perso #labMin" ).text("Sec");
+                    $( ".perso #labMax" ).text("Moelleux");
+                    break;
+                case 'Rose':
+                    $( ".perso #labMin" ).text("Sec");
+                    $( ".perso #labMax" ).text("Doux");
+                    break;
+                case 'rouge':
+                    $( ".perso #labMin" ).text("Léger");
+                    $( ".perso #labMax" ).text("Puissant");
+                    break;
+                default:
+                    $( ".perso #labMin" ).text("Sec");
+                    $( ".perso #labMax" ).text("Doux");
+                    break;
+            }
         }
     });
 
@@ -59,5 +113,28 @@ $(document).ready(function() {
         }else{
             var filteredData = vinTable.columns(2).search(this.value).draw();
         }
+    });
+
+    var slider = $('.range-slider'),
+        range = $('.range-slider__range'),
+        value = $('.range-slider__value');
+      
+    slider.each(function(){
+  
+      value.each(function(){
+        var value = $(this).prev().attr('value');
+        $(this).html(value);
+      });
+  
+      range.on('input', function(){
+        $(this).next(value).html(this.value);
+        var url = getFruitPerso();
+        vinTable.ajax.url(url).load();
+      });
+    });
+
+    $( ".cb_filtre" ).click(function() {
+        var url = getFruitPerso();
+        vinTable.ajax.url(url).load();
     });
 });

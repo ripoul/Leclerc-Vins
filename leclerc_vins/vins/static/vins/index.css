@@ -1,4 +1,200 @@
 .imgSelected{
-    padding:5px;
-    border:3px solid #021a40;
+    width:115px;
+    border:2px solid #000000;
+    padding: 5px;
+}
+
+.couleur{
+    padding:7px;
+}
+
+*, *:before, *:after {
+    box-sizing: border-box;
+  }
+  
+  body {
+    padding: 2px;
+    font-family: sans-serif;
+  }
+
+  h5{
+      margin-top: 5px;
+  }
+  
+  .range-slider {
+    margin: 5px 0 0 0%;
+  }
+  
+  .range-slider {
+    width: 100%;
+  }
+  
+  .range-slider__range {
+    -webkit-appearance: none;
+    width: calc(100% - (100px));
+    height: 10px;
+    border-radius: 5px;
+    background: #d7dcdf;
+    outline: none;
+    padding: 0;
+    margin: 0;
+  }
+  .range-slider__range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+            appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #2c3e50;
+    cursor: pointer;
+    transition: background 0.15s ease-in-out;
+  }
+  .range-slider__range::-webkit-slider-thumb:hover {
+    background: #1abc9c;
+  }
+  .range-slider__range:active::-webkit-slider-thumb {
+    background: #1abc9c;
+  }
+  .range-slider__range::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border: 0;
+    border-radius: 50%;
+    background: #2c3e50;
+    cursor: pointer;
+    transition: background 0.15s ease-in-out;
+  }
+  .range-slider__range::-moz-range-thumb:hover {
+    background: #1abc9c;
+  }
+  .range-slider__range:active::-moz-range-thumb {
+    background: #1abc9c;
+  }
+  .range-slider__range:focus::-webkit-slider-thumb {
+    box-shadow: 0 0 0 3px #fff, 0 0 0 6px #1abc9c;
+  }
+  
+  .range-slider__value {
+    display: inline-block;
+    position: relative;
+    width: 60px;
+    color: #fff;
+    line-height: 20px;
+    text-align: center;
+    border-radius: 3px;
+    background: #2c3e50;
+    padding: 5px 10px;
+    margin-left: 8px;
+  }
+  .range-slider__value:after {
+    position: absolute;
+    top: 8px;
+    left: -7px;
+    width: 0;
+    height: 0;
+    border-top: 7px solid transparent;
+    border-right: 7px solid #2c3e50;
+    border-bottom: 7px solid transparent;
+    content: "";
+  }
+  
+  ::-moz-range-track {
+    background: #d7dcdf;
+    border: 0;
+  }
+  
+  input::-moz-focus-inner,
+  input::-moz-focus-outer {
+    border: 0;
+  }  
+
+
+  label.btn span {
+    font-size: 1.5em ;
+  }
+  
+  label input[type="radio"] ~ i.fa.fa-circle-o{
+      color: #c8c8c8;    display: inline;
+  }
+  label input[type="radio"] ~ i.fa.fa-dot-circle-o{
+      display: none;
+  }
+  label input[type="radio"]:checked ~ i.fa.fa-circle-o{
+      display: none;
+  }
+  label input[type="radio"]:checked ~ i.fa.fa-dot-circle-o{
+      color: #7AA3CC;    display: inline;
+  }
+  label:hover input[type="radio"] ~ i.fa {
+  color: #7AA3CC;
+  }
+  
+  label input[type="checkbox"] ~ i.fa.fa-square-o{
+      color: #c8c8c8;    display: inline;
+  }
+  label input[type="checkbox"] ~ i.fa.fa-check-square-o{
+      display: none;
+  }
+  label input[type="checkbox"]:checked ~ i.fa.fa-square-o{
+      display: none;
+  }
+  label input[type="checkbox"]:checked ~ i.fa.fa-check-square-o{
+      color: #7AA3CC;    display: inline;
+  }
+  label:hover input[type="checkbox"] ~ i.fa {
+  color: #7AA3CC;
+  }
+  
+  div[data-toggle="buttons"] label.active{
+      color: #7AA3CC;
+  }
+  
+  div[data-toggle="buttons"] label {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 2em;
+  text-align: left;
+  white-space: nowrap;
+  vertical-align: top;
+  cursor: pointer;
+  background-color: none;
+  border: 0px solid 
+  #c8c8c8;
+  border-radius: 3px;
+  color: #c8c8c8;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  }
+  
+  div[data-toggle="buttons"] label:hover {
+  color: #7AA3CC;
+  }
+  
+  div[data-toggle="buttons"] label:active, div[data-toggle="buttons"] label.active {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  }
+  
+  
+
+#lab {
+  width: 100%;
+}
+
+#labMin{
+  float:left;
+  margin-top: -3px;
+  width:auto;
+}
+
+#labMax{
+  float:right;
+  margin-top: -3px;
+  width: auto;
 }

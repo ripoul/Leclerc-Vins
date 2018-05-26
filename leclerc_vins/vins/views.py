@@ -35,6 +35,14 @@ def getVins(request, repas):
         instance = Vin.objects.all()
     else:
         instance = Vin.objects.filter(Repas=int(repas))
+
+    perso = int(request.GET.get('perso',-1))
+    fruit = int(request.GET.get('fruit', -1))
+
+    if(fruit>=0):
+        instance = instance.filter(Fruit=fruit)
+    if(perso>=0):
+        instance = instance.filter(Personalite=perso)
     
     serializer = VinSerializer(instance, many=True)
     myjson = JSONRenderer().render(serializer.data)
