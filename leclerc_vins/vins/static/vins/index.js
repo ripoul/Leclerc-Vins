@@ -15,15 +15,15 @@ $(document).ready(function() {
     function getFruitPerso() {
         var slPerso = $('#perso');
         var slFruit = $('#fruit');
-        var cbFruit = $('#cb_fruit');
-        var cbPerso = $('#cb_perso');
+        var cbFruit = $('#bt_fruit');
+        var cbPerso = $('#bt_perso');
         var data = {};
         var urlVins='getVins/-1?';
 
-        if (cbFruit.prop('checked')) {
+        if (cbFruit.attr('class').includes("success")) {
             data.fruit= slFruit.prop('value')
         }
-        if (cbPerso.prop('checked')) {
+        if (cbPerso.attr('class').includes("success")) {
             data.perso= slPerso.prop('value')
         }
         
@@ -95,7 +95,7 @@ $(document).ready(function() {
                     $( ".perso #labMin" ).text("Sec");
                     $( ".perso #labMax" ).text("Doux");
                     break;
-                case 'rouge':
+                case 'Rouge':
                     $( ".perso #labMin" ).text("Léger");
                     $( ".perso #labMax" ).text("Puissant");
                     break;
@@ -133,7 +133,14 @@ $(document).ready(function() {
       });
     });
 
-    $( ".cb_filtre" ).click(function() {
+    $( ".bt_filtre" ).click(function() {
+        if ($(this).attr('class').includes("success")) {
+            $(this).toggleClass('btn-success btn-danger');
+            $(this).html("Non Filtré");
+        } else {
+            $(this).toggleClass('btn-danger btn-success');
+            $(this).html("Filtré");
+        }
         var url = getFruitPerso();
         vinTable.ajax.url(url).load();
     });
