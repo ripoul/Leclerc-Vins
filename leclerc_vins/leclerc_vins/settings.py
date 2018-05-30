@@ -25,7 +25,7 @@ SECRET_KEY = '0jt_5$gotk^b-i5x*r%v0^drywn@oarv&q$xm$zwvf^dp+glb1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'gunicorn',
     'vins.apps.VinsConfig',
     'rest_framework',
 ]
@@ -77,8 +78,18 @@ WSGI_APPLICATION = 'leclerc_vins.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE':'django.db.backends.postgresql',
+        'NAME':'leclerc',
+        'USER':'ripoul',
+        'PASSWORD':'Motherlode0',
+        'HOST':'127.0.0.1',
+        'PORT':'5432',
+        'OPTIONS':{
+            'client_encoding':'UTF8',
+        },
+        'TEST':{
+            'CHARSET':'UTF8',
+        },
     }
 }
 
@@ -115,8 +126,11 @@ USE_L10N = True
 
 USE_TZ = True
 
+DEFAULT_CHARSET='utf-8'
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT='/home/ripoul/static/'
