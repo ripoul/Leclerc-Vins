@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Ma cave Leclerc</title>
+    <link rel="shortcut icon" type="image/png" href="{% static "favicon.ico" %}"/>
     
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
@@ -23,25 +24,24 @@
 </head>
 <body>
     <div class="container-fluid">
+        <nav class="navbar sticky-top" style="width: 100%">
+            <img id="logo-leclerc" src="{% static "vins/logo/e-leclerc-logo.png" %}" alt="leclerc-logo"><img id="logo-cave" src="{% static "vins/logo/ma-cave-logo.png" %}" alt="leclerc-logo">
+        </nav>
         <div class="row">
             <div class="col-md-3">
-                <div class="row">
-                    <h3>Filtres</h3>
-                </div>
-                <div class="row">
+                <h3 id="title-filtres">Filtres</h3>
+                <div id="regroup-filtre">
                     <h5>Couleur du vin</h5>
-                </div>
-                <div class="row">
-                    {% for couleur in couleurs %}
-                        <div class="col-md-3 couleur" align="center" >
-                            <img src="{{couleur.photo}}" alt="{{couleur.couleur}}">
-                            <div class="text-center">
-                                {{couleur.couleur}}
+                    <div class="row">
+                        {% for couleur in couleurs %}
+                            <div class="col-md-3 couleur" align="center" >
+                                <img src="{{couleur.photo}}" alt="{{couleur.couleur}}">
+                                <div class="text-center">
+                                    {{couleur.couleur}}
+                                </div>
                             </div>
-                        </div>
-                    {% endfor %}
-                </div>
-                <div class="row">
+                        {% endfor %}
+                    </div>
                     <h5>Region du vin</h5>
                     <select class="form-control region">
                         <option value="all">all</option>
@@ -49,8 +49,6 @@
                             <option value="{{region.Nom}}">{{region.Nom}}</option>
                         {% endfor %}
                     </select>
-                </div>
-                <div class="row">
                     <h5>Fruit <button type="button" id="bt_fruit" class="btn btn-danger bt_filtre">Non Filtré</button></h5>
                     <div class="range-slider">
                         <input id="fruit" class="range-slider__range" type="range" value="2" min="0" max="4">
@@ -59,8 +57,6 @@
                     <div id="lab">
                         <span id="labMin">Léger</span> <span id="labMax">Prononcé</span>
                     </div>
-                </div>
-                <div class="row">
                     <h5>Personnalité <button type="button" id="bt_perso" class="btn btn-danger bt_filtre">Non Filtré</button></h5>
                     <div class="range-slider">
                         <input id="perso" class="range-slider__range " type="range" value="2" min="0" max="4">
