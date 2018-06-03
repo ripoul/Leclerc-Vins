@@ -1,6 +1,11 @@
 # -*- coding: utf-8 -*-
 from rest_framework import serializers
-from .models import Vin, CouleurVin, Repas
+from .models import Vin, CouleurVin, Repas, Region
+
+class RegionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Region
+        fields = '__all__'
 
 class RepasSerializer(serializers.ModelSerializer):
     class Meta:
@@ -14,7 +19,8 @@ class CouleurVinSerializer(serializers.ModelSerializer):
 
 class VinSerializer(serializers.ModelSerializer):
     Couleur = CouleurVinSerializer(read_only=True)
+    Region = RegionSerializer(read_only=True)
 
     class Meta:
         model = Vin
-        fields = ('id', 'Nom', 'Couleur')
+        fields = ('id', 'Nom', 'Couleur', 'Region', 'Fruit', 'Personalite')

@@ -19,31 +19,94 @@
     <link rel="stylesheet" href=" https://cdn.datatables.net/select/1.2.5/css/select.bootstrap4.min.css">
     
     <script type="text/javascript" src="{% static "vins/index.js" %}"></script>
+    <link rel="stylesheet" href="{% static "vins/index.css" %}">
 </head>
 <body>
-    <h1>Selectionnez un vin dans ce tableau : </h1>
-    <table id="vinTable" cellspacing="0" class="table table-striped table-bordered" style="width:100%">
-        <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Couleur</th>
-            </tr>
-        </thead>
-    </table>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="row">
+                    <h3>Filtres</h3>
+                </div>
+                <div class="row">
+                    <h5>Couleur du vin</h5>
+                </div>
+                <div class="row">
+                    {% for couleur in couleurs %}
+                        <div class="col-md-3 couleur" align="center" >
+                            <img src="{{couleur.photo}}" alt="{{couleur.couleur}}">
+                            <div class="text-center">
+                                {{couleur.couleur}}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="row">
+                    <h5>Region du vin</h5>
+                    <select class="form-control region">
+                        <option value="all">all</option>
+                        {% for region in regions %}
+                            <option value="{{region.Nom}}">{{region.Nom}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="row">
+                    <h5>Fruit <button type="button" id="bt_fruit" class="btn btn-danger bt_filtre">Non Filtré</button></h5>
+                    <div class="range-slider">
+                        <input id="fruit" class="range-slider__range" type="range" value="2" min="0" max="4">
+                        <span class="range-slider__value">2</span>
+                    </div>
+                    <div id="lab">
+                        <span id="labMin">Léger</span> <span id="labMax">Prononcé</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <h5>Personnalité <button type="button" id="bt_perso" class="btn btn-danger bt_filtre">Non Filtré</button></h5>
+                    <div class="range-slider">
+                        <input id="perso" class="range-slider__range " type="range" value="2" min="0" max="4">
+                        <span class="range-slider__value">2</span>
+                    </div>
+                    <div id="lab" class="perso">
+                        <span id="labMin">Sec/Léger</span> <span id="labMax">Moelleux/Doux/Puissant</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <h1>Selectionnez un vin dans ce tableau : </h1>
+                <table id="vinTable" cellspacing="0" class="table table-striped table-bordered" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Couleur</th>
+                            <th>Region</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
 
-    <div class=".container" style="text-align: center;">
-        <h3><a href="repas">
-            <i style="transform: rotate(90deg)" class="fas fa-exchange-alt"></i> Inversez les deux tableaux !
-            </a></h3>
-    </div>
+        <div class="row">
+            <div class="col-md-9 offset-md-3">
+                <div class=".container" style="text-align: center;">
+                    <h3><a href="repas">
+                        <i style="transform: rotate(90deg)" class="fas fa-exchange-alt"></i> Inversez les deux tableaux !
+                        </a></h3>
+                </div>
+            </div>
+        </div>
 
-    <h1>Et les repas allant avec ce vin apparaitront dans celui là : </h1>
-    <table id="repasTable" class="table table-striped table-bordered" style="width:100%" cellspacing="0">
-        <thead>
-            <tr>
-                <th>Nom</th>
-            </tr>
-        </thead>
-    </table>
+        <div class="row">
+            <div class="col-md-9 offset-md-3">
+                <h1>Et les repas allant avec ce vin apparaitront dans celui là : </h1>
+                <table id="repasTable" class="table table-striped table-bordered" style="width:100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>  
 </body>
 </html>

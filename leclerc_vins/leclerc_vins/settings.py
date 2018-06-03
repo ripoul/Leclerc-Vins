@@ -134,3 +134,6 @@ DEFAULT_CHARSET='utf-8'
 
 STATIC_URL = '/static/'
 STATIC_ROOT='/home/ripoul/static/'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = '/home/ripoul/media'

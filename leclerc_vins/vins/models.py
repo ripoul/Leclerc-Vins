@@ -2,8 +2,14 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from .modelFields import IntegerRangeField
 
-# Create your models here.
+class Region(models.Model):
+    Nom = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.Nom
+
 class Repas(models.Model):
     Nom = models.CharField(max_length=200)
 
@@ -12,15 +18,18 @@ class Repas(models.Model):
 
 class CouleurVin(models.Model):
     couleur = models.CharField(max_length=200)
+    photo = models.ImageField(upload_to='vins/static/vins/')
 
     def __str__(self):
         return self.couleur
 
 class Vin(models.Model):
     Nom =  models.CharField(max_length=200)
-    Couleur = models.ForeignKey(CouleurVin)
+    Couleur = models.ForeignKey(CouleurVin, on_delete=models.CASCADE)
     Repas = models.ManyToManyField(Repas)
-    """photo = models.ImageField(upload_to='chat/static/pp/', default='chat/static/pp/pp.jpeg')"""
+    Region = models.ForeignKey(Region, on_delete=models.CASCADE)
+    Fruit = IntegerRangeField(min_value=0, max_value=4, default=2)
+    Personalite = IntegerRangeField(min_value=0, max_value=4, default=2)
     
     def __str__(self):
-        return "Nom : %s, Couleur : %s"%(self.Nom, self.Couleur)
+        return "Nom : %s, Couleur : %s, Region : %s, Fruit : %s, Personalite : %s"%(self.Nom, self.Couleur, self.Region, self.Fruit, self.Personalite)
